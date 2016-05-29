@@ -24,15 +24,18 @@ fun main(args: Array<String>) {
 
     while (true) {
         // вывести состояние мира
-        println("День $day. Персонаж $name жив, у него $HP здоровья.")
+        println("День $day. Персонаж $name жив, у него $HP здоровья и $smallHPpotions Маленьких зелий здоровья.")
 
         // ввести команду
-        val command = input()
+        val command = input().toLowerCase()
 
         // выполнить команду
-        if (command == "Выход") {
+        if (command == "exit") {
             break
         }
+         if (command == "shp") {
+            drinkSmallHPPotion()
+         }
 
         // События
         val dice = random.nextInt(20)
@@ -40,6 +43,7 @@ fun main(args: Array<String>) {
             in 0..4 -> smallDamageEvent()
             in 5..8 -> smallHealEvent()
             in 9..12 -> smallChoiceEvent()
+            in 13..13 -> smallGiveSmallHealPotionEvent()
             else -> println("Ничего не произошло.")
         }
 

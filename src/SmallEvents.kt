@@ -54,3 +54,15 @@ fun smallChoiceEvent() {
         }
     }
 }
+
+fun smallGiveSmallHealPotionEvent() {
+    smallHPpotions += 1
+    val index = random.nextInt(smallGiveSmallHealPotionEvent.size)
+    println(smallGiveSmallHealPotionEvent[index])
+}
+
+
+val smallGiveSmallHealPotionEvent = arrayOf(
+        "Покопавшись в кустах вы нашли маленькую баночку.!",
+        "Внезапно залетали бабочки, на горизонте вспыхнула радуга и шишка у ваших ног превратилась в бутылочку."
+)
