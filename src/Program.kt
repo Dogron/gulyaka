@@ -2,24 +2,8 @@ package gulyaka
 
 import java.util.*
 
-var HP = 20
-var maxHP = 20
 var day = 0
-fun heal(points: Int) {
-    HP = HP + points
-    println("hp +$points")
-    if (HP > maxHP) {
-        HP = maxHP
-    }
-}
-
-fun damage(points: Int) {
-    HP = HP - points
-    println("hp -$points")
-    if (HP < 0) {
-        HP = 0
-    }
-}
+val random = Random()
 
 fun input(): String {
     print ("> ")
@@ -27,8 +11,6 @@ fun input(): String {
     return read
 }
 
-val random = Random()
-var name = ""
 fun main(args: Array<String>) {
 
     if (args.size > 0) {
@@ -71,44 +53,3 @@ fun main(args: Array<String>) {
     println("Игра окончена. Вы прожили $day дней.")
 }
 
-fun smallChoiceEvent() {
-    println("Вы наткнулись на неизвестную ягоду красного цвета, будете есть?")
-    println("1. Да. ")
-    println("2. Нет. ")
-    val choice = input()
-    if (choice == "1") {
-        when {
-            random.nextInt(20) < 10 -> {
-                damage(4)
-                println("Ягода оказалась отравленой и вам нехорошо скрутило живот.")
-            }
-            else -> {
-                heal(4)
-                println("Ням-Ням.")
-            }
-        }
-    }
-}
-
-val smallHealEvents = arrayOf(
-        "Добрая фея поправила вам здоровье.",
-        "Вам на нос упала живительная капля."
-)
-
-fun smallHealEvent() {
-    val index = random.nextInt(smallHealEvents.size)
-    println(smallHealEvents[index])
-    heal(random.nextInt(4) + 1)
-}
-
-val smallDamageEvents = arrayOf(
-        "Вам на голову упал кирпич.",
-        "Вас закусали гигантские насекомые."
-
-)
-
-fun smallDamageEvent() {
-    val index = random.nextInt(smallDamageEvents.size)
-    println(smallDamageEvents[index])
-    damage(random.nextInt(4) + 1)
-}
