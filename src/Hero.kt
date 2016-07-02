@@ -12,6 +12,10 @@ fun heal(points: Int) {
     }
 }
 
+fun attack(monster: Monster) {
+    monster.damage(random.nextInt(4) + 1)
+}
+
 fun damage(points: Int) {
     HP -= points
     println("Вас повредили на $points HP ")

@@ -1,6 +1,3 @@
-/**
- * Created by Dogron on 29.05.16.
- */
 package gulyaka
 
 class MonsterType(val name: String, val initialHP: Int, val maxDamage: Int) {
@@ -17,6 +14,10 @@ class Monster(val name: String, var HP: Int, val maxDamage: Int) {
             HP = 0
         }
     }
+
+    fun attack() {
+        damage(random.nextInt(maxDamage) + 1)
+    }
 }
 
 val monsterTypes = arrayOf(
@@ -29,17 +30,16 @@ fun Monster() {
     val monster = monsterType.createMonster()
 
     println("Вы встретили ${monster.name}.")
-    println("У ${monster.name} ${monster.HP} HP")
     while (true) {
-        monster.damage(random.nextInt(4) + 1)
+        println("У ${monster.name} ${monster.HP} HP")
+        attack(monster)
         if (monster.HP == 0) {
             println("${monster.name} побеждён.")
             return
-        } else
-            println("у ${monster.name} осталось ${monster.HP} HP")
-        damage(random.nextInt(monster.maxDamage) + 1)
+        }
+        monster.attack()
         if (HP <= 0) {
-            break
+            return
         }
     }
 }
