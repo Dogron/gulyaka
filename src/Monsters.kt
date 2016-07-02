@@ -16,7 +16,7 @@ class Monster(val name: String, var HP: Int, val maxDamage: Int) {
     }
 
     fun attack() {
-        damage(random.nextInt(maxDamage) + 1)
+        hero.damage(random.nextInt(maxDamage) + 1)
     }
 }
 
@@ -31,14 +31,17 @@ fun Monster() {
 
     println("Вы встретили ${monster.name}.")
     while (true) {
+        hero.status()
         println("У ${monster.name} ${monster.HP} HP")
-        attack(monster)
+        hero.command()
+
+        hero.attack(monster)
         if (monster.HP == 0) {
             println("${monster.name} побеждён.")
             return
         }
         monster.attack()
-        if (HP <= 0) {
+        if (hero.HP <= 0) {
             return
         }
     }

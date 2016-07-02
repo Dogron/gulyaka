@@ -9,7 +9,7 @@ val smallHealEvents = arrayOf(
 fun smallHealEvent() {
     val index = random.nextInt(smallHealEvents.size)
     println(smallHealEvents[index])
-    heal(random.nextInt(4) + 1)
+    hero.heal(random.nextInt(4) + 1)
 }
 
 val smallDamageEvents = arrayOf(
@@ -21,7 +21,7 @@ val smallDamageEvents = arrayOf(
 fun smallDamageEvent() {
     val index = random.nextInt(smallDamageEvents.size)
     println(smallDamageEvents[index])
-    damage(random.nextInt(4) + 1)
+    hero.damage(random.nextInt(4) + 1)
 }
 
 fun smallChoiceEvent() {
@@ -35,11 +35,11 @@ fun smallChoiceEvent() {
         when (choice) {
             "1" -> when {
                 random.nextInt(20) < 10 -> {
-                    damage(event.amount)
+                    hero.damage(event.amount)
                     println(event.damageText)
                     return
                 } else -> {
-                    heal(event.amount)
+                    hero.heal(event.amount)
                     println(event.healText)
                     return
                 }
@@ -75,7 +75,7 @@ val smallChoiceEvents = arrayOf(
 )
 
 fun smallGiveSmallHealPotionEvent() {
-    smallHPpotions += 1
+    hero.smallHPpotions += 1
     val index = random.nextInt(smallGiveSmallHealPotionEvent.size)
     println(smallGiveSmallHealPotionEvent[index])
 }

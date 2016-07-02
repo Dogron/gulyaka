@@ -14,30 +14,19 @@ fun input(): String {
 fun main(args: Array<String>) {
 
     if (args.size > 0) {
-        name = args[0]
+        hero.name = args[0]
     } else {
         println("Привет, как тебя зовут?")
-        name = input()
+        hero.name = input()
     }
 
-    println("Рад тебя видеть, $name.")
+    println("Рад тебя видеть, ${hero.name}.")
 
     while (true) {
-        // вывести состояние мира
-        println("День $day. Персонаж $name жив, у него $HP здоровья и $smallHPpotions Маленьких зелий здоровья.")
+        println("День $day. ")
+        hero.status()
+        hero.command()
 
-        // ввести команду
-        val command = input().toLowerCase()
-
-        // выполнить команду
-        if (command == "exit") {
-            break
-        }
-         if (command == "shp") {
-            drinkSmallHPPotion()
-         }
-
-        // События
         val dice = random.nextInt(20)
         when (dice) {
             in 0..4 -> smallDamageEvent()
@@ -48,8 +37,7 @@ fun main(args: Array<String>) {
             else -> println("Ничего не произошло.")
         }
 
-        // изменить мир
-        if (HP <= 0) {
+        if (hero.HP <= 0) {
             println("Вы погибли.")
             break
         }
@@ -57,4 +45,5 @@ fun main(args: Array<String>) {
     }
     println("Игра окончена. Вы прожили $day дней.")
 }
+
 
