@@ -25,27 +25,27 @@ fun smallDamageEvent() {
 }
 
 fun smallChoiceEvent() {
-    println("Вы наткнулись на неизвестную ягоду красного цвета, будете есть?")
+    val index = random.nextInt(smallChoiceEvents.size)
+    val event = smallChoiceEvents[index]
+    println(event.question)
     println("1. Да. ")
     println("2. Нет. ")
-
     while (true) {
         val choice = input()
         when (choice) {
             "1" -> when {
                 random.nextInt(20) < 10 -> {
-                    damage(4)
-                    println("Ягода оказалась отравленой и вам нехорошо скрутило живот.")
+                    damage(event.amount)
+                    println(event.damageText)
                     return
-                }
-                else -> {
-                    heal(4)
-                    println("Ням-Ням.")
+                } else -> {
+                    heal(event.amount)
+                    println(event.healText)
                     return
                 }
             }
             "2" -> {
-                println("Не хотите, как хотите.")
+                println(event.negative)
                 return
             }
             else -> {
@@ -55,6 +55,25 @@ fun smallChoiceEvent() {
     }
 }
 
+class SmallChoiceEvent(val question: String,
+                       val negative: String,
+                       val healText: String,
+                       val damageText: String,
+                       val amount: Int)
+
+val smallChoiceEvents = arrayOf(
+        SmallChoiceEvent("Вы наткнулись на неизвестную ягоду, будете есть?",
+                "Не хотите, как хотите.",
+                "Ням-Ням.",
+                "Ягода оказалась отравленой и вам нехорошо скрутило живот.",
+                4),
+        SmallChoiceEvent("Вам предложили бутылёчек с народным лекартсвом, будете пить?",
+                "А зря, выглядит вкусно.",
+                "Буль-буль.",
+                "В глазах помутнело.",
+                4)
+)
+
 fun smallGiveSmallHealPotionEvent() {
     smallHPpotions += 1
     val index = random.nextInt(smallGiveSmallHealPotionEvent.size)
@@ -63,6 +82,7 @@ fun smallGiveSmallHealPotionEvent() {
 
 
 val smallGiveSmallHealPotionEvent = arrayOf(
-        "Покопавшись в кустах вы нашли маленькую баночку.!",
+        "Покопавшись в кустах вы нашли маленькую баночку!",
         "Внезапно залетали бабочки, на горизонте вспыхнула радуга и шишка у ваших ног превратилась в бутылочку."
 )
+

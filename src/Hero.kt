@@ -6,7 +6,7 @@ var name = ""
 var smallHPpotions = 3
 fun heal(points: Int) {
     HP += points
-    println("hp +$points")
+    println("Вас вылечили на $points hp ")
     if (HP > maxHP) {
         HP = maxHP
     }
@@ -14,7 +14,7 @@ fun heal(points: Int) {
 
 fun damage(points: Int) {
     HP -= points
-    println("hp -$points")
+    println("Вас повредили на $points HP ")
     if (HP < 0) {
         HP = 0
     }
