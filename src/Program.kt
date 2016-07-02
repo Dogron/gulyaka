@@ -24,16 +24,14 @@ fun main(args: Array<String>) {
 
     while (true) {
         println("День $day. ")
+
         hero.status()
         hero.command()
 
         val dice = random.nextInt(20)
         when (dice) {
-            in 0..4 -> smallDamageEvent()
-            in 5..8 -> smallHealEvent()
-            in 9..12 -> smallChoiceEvent()
-            in 13..14 -> smallGiveSmallHealPotionEvent()
-            in 16..17-> Monster()
+            in 0..14 -> event()
+            in 16..17-> battle()
             else -> println("Ничего не произошло.")
         }
 

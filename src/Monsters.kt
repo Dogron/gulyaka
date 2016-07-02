@@ -25,7 +25,7 @@ val monsterTypes = arrayOf(
         MonsterType("Разбойник", 3, 10)
 )
 
-fun Monster() {
+fun battle() {
     val monsterType = monsterTypes[random.nextInt(monsterTypes.size)]
     val monster = monsterType.createMonster()
 
