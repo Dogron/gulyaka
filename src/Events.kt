@@ -37,21 +37,21 @@ class FindWeaponEvent(val question: String,
 class HealEvent(val text: String, val points: Int) : Event() {
     override fun run() {
         println(text)
-        hero.heal(random.nextInt(points) + 1)
+        hero.heal(dice(points))
     }
 }
 
 class DamageEvent(val text: String, val points: Int) : Event() {
     override fun run() {
         println(text)
-        hero.damage(random.nextInt(points) + 1)
+        hero.damage(dice(points))
     }
 }
 
 class HealingPotionEvent(val text: String) : Event() {
     override fun run() {
         println(text)
-        hero.smallHPpotions += 1
+        hero.smallHealingPotions += 1
     }
 }
 
@@ -68,7 +68,7 @@ class SmallChoiceEvent(val question: String,
             val choice = input()
             when (choice) {
                 "1" -> when {
-                    random.nextInt(20) < 10 -> {
+                    dice(20) < 10 -> {
                         hero.damage(amount)
                         println(damageText)
                         return
@@ -115,7 +115,11 @@ val events = arrayOf(
                 "и шишка у ваших ног превратилась в бутылочку."),
 
         FindWeaponEvent("Нашли посреди дороги окрававленый кинжал, будете брать?", "Что нибудь", "Молодцы",
-                Dagger())
+                Dagger()),
+        FindWeaponEvent("Меч! Будете брать?", "Что нибудь", "Молодцы",
+                Sword()),
+        FindWeaponEvent("Вампирский Меч! Будете брать?", "Что нибудь", "Молодцы",
+                VampiricSword())
 
 
 )

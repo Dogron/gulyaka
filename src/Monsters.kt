@@ -16,7 +16,7 @@ class Monster(val name: String, var HP: Int, val maxDamage: Int) {
     }
 
     fun attack() {
-        hero.damage(random.nextInt(maxDamage) + 1)
+        hero.damage(dice(maxDamage))
     }
 }
 

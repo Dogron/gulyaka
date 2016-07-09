@@ -6,11 +6,11 @@ class Hero {
     val maxHP = 20
     var HP = 20
     var name = ""
-    var smallHPpotions = 3
+    var smallHealingPotions = 3
     var weapon: Weapon = Fist()
 
     fun status() {
-        println("Персонаж $name жив, у него $HP здоровья и $smallHPpotions Маленьких зелий здоровья.")
+        println("Персонаж $name жив, у него $HP здоровья.")
     }
 
     fun heal(points: Int) {
@@ -34,19 +34,30 @@ class Hero {
     }
 
     fun drinkSmallHPPotion() {
-        if (smallHPpotions == 0) {
+        if (smallHealingPotions == 0) {
             println("Маленьких зелий здоровья больше нет!")
             return
         }
-        smallHPpotions -= 1
+        smallHealingPotions -= 1
         heal(3)
 
     }
 
-    fun command() {
-        val command = input().toLowerCase()
-        when (command) {
-            "shp" -> drinkSmallHPPotion()
+    fun command() : Boolean {
+        while (true) {
+            val command = input().toLowerCase()
+            when (command) {
+                "shp" -> {
+                    drinkSmallHPPotion()
+                    return true
+                }
+                "?" -> {
+                    println("У вас $smallHealingPotions Маленьких зелий здоровья")
+                    println("Ваше оружие $weapon")
+                }
+                else ->
+                    return false
+            }
         }
     }
 }

@@ -6,9 +6,17 @@ var day = 0
 val random = Random()
 
 fun input(): String {
-    print ("> ")
+    print("> ")
     val read = readLine()!!
     return read
+}
+
+fun dice(amount: Int, times: Int = 1): Int {
+    var result = 0
+    repeat(times) {
+        result += random.nextInt(amount) + 1
+    }
+    return result
 }
 
 fun main(args: Array<String>) {
@@ -26,12 +34,11 @@ fun main(args: Array<String>) {
         println("День $day. ")
 
         hero.status()
-        hero.command()
+        while (hero.command()) {}
 
-        val dice = random.nextInt(20)
-        when (dice) {
+        when (dice(20)) {
             in 0..14 -> event()
-            in 16..17-> battle()
+            in 16..17 -> battle()
             else -> println("Ничего не произошло.")
         }
 
@@ -39,7 +46,7 @@ fun main(args: Array<String>) {
             println("Вы погибли.")
             break
         }
-        day = day + 1
+        day += 1
     }
     println("Игра окончена. Вы прожили $day дней.")
 }
