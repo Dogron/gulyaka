@@ -7,6 +7,7 @@ class Hero {
     var HP = 20
     var name = ""
     var smallHPpotions = 3
+    var weapon: Weapon = Fist()
 
     fun status() {
         println("Персонаж $name жив, у него $HP здоровья и $smallHPpotions Маленьких зелий здоровья.")
@@ -21,7 +22,7 @@ class Hero {
     }
 
     fun attack(monster: Monster) {
-        monster.damage(random.nextInt(4) + 1)
+        weapon.attack(monster)
     }
 
     fun damage(points: Int) {

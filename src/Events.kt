@@ -5,6 +5,35 @@ abstract class Event() {
     abstract fun run()
 }
 
+
+class FindWeaponEvent(val question: String,
+                      val negative: String,
+                      val take: String,
+                      val weapon: Weapon) : Event() {
+    override fun run() {
+        println(question)
+        println("1. Да.")
+        println("2. Нет.")
+        while (true) {
+            val choice = input()
+            when (choice) {
+                "1" -> {
+                    println(take)
+                    hero.weapon = weapon
+                    return
+                }
+                "2" -> {
+                    println(negative)
+                    return
+                }
+                else -> {
+                    println("Введите 1 или 2.")
+                }
+            }
+        }
+    }
+}
+
 class HealEvent(val text: String, val points: Int) : Event() {
     override fun run() {
         println(text)
@@ -82,7 +111,13 @@ val events = arrayOf(
                 4),
 
         HealingPotionEvent("Покопавшись в кустах вы нашли маленькую баночку!"),
-        HealingPotionEvent("Внезапно залетали бабочки, на горизонте вспыхнула радуга и шишка у ваших ног превратилась в бутылочку.")
+        HealingPotionEvent("Внезапно залетали бабочки, на горизонте вспыхнула радуга " +
+                "и шишка у ваших ног превратилась в бутылочку."),
+
+        FindWeaponEvent("Нашли посреди дороги окрававленый кинжал, будете брать?", "Что нибудь", "Молодцы",
+                Dagger())
+
+
 )
 
 fun event() {
