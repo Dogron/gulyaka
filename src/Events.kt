@@ -12,6 +12,7 @@ class FindWeaponEvent(val question: String,
                       val weapon: Weapon) : Event() {
     override fun run() {
         println(question)
+        println("У вас сейчас ${hero.weapon}.")
         println("1. Да.")
         println("2. Нет.")
         while (true) {
